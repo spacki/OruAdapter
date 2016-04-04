@@ -1,0 +1,202 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:ipf="http://openehealth.org/schema/ipf-commons-core"
+       xmlns:ctx="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:http = "http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/lang
+http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+http://camel.apache.org/schema/spring
+http://camel.apache.org/schema/spring/camel-spring.xsd
+http://openehealth.org/schema/ipf-commons-core
+http://openehealth.org/schema/ipf-commons-core-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd
+http://cxf.apache.org/transports/http/configuration
+http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+
+    <ctx:property-placeholder location="classpath:oru.properties" file-encoding="UTF-8"/>
+
+    <http:conduit name="*.http-conduit">
+        <http:client ContentType="application/soap+xml; charset=UTF-8"/>
+    </http:conduit>
+
+    <camel:camelContext id="camelContext">
+        <camel:routeBuilder ref="routeBuilder"/>        
+    </camel:camelContext>
+
+	<ipf:globalContext id="globalContext"/>    
+
+    <bean id="routeBuilder"
+        class="com.ge.hc.oru.OruRouteBuilder">
+        <property name="pixConfig" ref="pixConfiguration"/>
+    </bean>
+
+    <util:map id="disableMTOMProperties">
+        <entry key="mtom-enabled" value="false" />
+    </util:map>
+
+    <bean id="oruConfiguration" class="com.ge.hc.oru.OruConfiguration">
+        <property name="inputUrl" value="${oruInputUrl}"></property>
+        <property name="iti18Endpoint" value="${iti18Endpoint}"></property>
+        <property name="iti41Endpoint" value="${iti41Endpoint}"></property>
+        <property name="repositoryUniqueId" value="${repositoryUniqueId}"></property>
+        <property name="submissionsSourceId" value="${submissionsSourceId}"></property>
+        <property name="timezoneId" value="${timezoneId}"></property>
+        <property name="cdaBase64Encoding" value="${cdaDocumentBas64Encoding}"></property>
+        <property name="cdaEncoding" value="${cdaDocumentEncoding}"></property>
+        <property name="cdaForceB64Representation" value="${cdaForceB64Representation}"></property>
+        <property name="enableUniqueIdPrefix" value="${enableUniqueIdPrefix}"/>
+        <property name="uniqueIdPrefix" value="${uniqueIdPrefix}"/>
+        <property name="accessionNumberDomain" value="${accessionNumberDomain}"/>
+        <property name="accessionNumberUrn" value="${accessionNumberUrn}" />
+        <property name="orderNumberDomain" value="${orderNumberDomain}"/>
+        <property name="orderNumberUrn" value="${orderNumberUrn}"/>
+    </bean>
+
+    <bean id="pixConfiguration" class="com.ge.hc.oru.PixConfiguration">
+        <property name="enablePix" value="${enablePIX}"/>
+        <property name="pixManagerInfo" value="${PIXManagerInfo}"/>
+        <property name="localAssigningAuthority" value="${localAssigningAuthority}"/>
+        <property name="localNamespace" value="${localNamespace}"/>
+        <property name="localUUtype" value="${localUUtype}"/>
+        <property name="globalAssigningAuthority" value="${globalAssigningAuthority}"/>
+        <property name="globalAssigningAuthorityName" value="${globalAssigningAuthorityName}"/>
+        <property name="pixQueryId_1" value="${pixQueryId_1}"/>
+        <property name="pixQueryId_2" value="${pixQueryId_2}"/>
+        <property name="pixQueryId_3" value="${pixQueryId_3}"/>
+        <property name="encodingChars" value="${encodingChars}"/>
+        <property name="hl7Version" value="${hl7Version}"/>
+        <property name="receivingApplication" value="${receivingApplication}"/>
+        <property name="receivingFacility" value="${receivingFacility}"/>
+        <property name="sendingApplication" value="${sendingApplication}"/>
+        <property name="sendingFacility" value="${sendingFacility}"/>
+    </bean>
+
+    <bean id="oruModelExtension"
+          class="com.ge.hc.oru.OruModelExtensionModule">
+    </bean>
+
+    <bean id="routeModelExtender"
+          class="org.openehealth.ipf.platform.camel.core.extend.DefaultModelExtender">
+        <property name="routeModelExtensions">
+            <list>
+                <ref bean="oruModelExtension"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="cdaProperties" class="com.ge.hc.oru.orutocda.CdaPropertyBuilder">
+        <property name="templateId" value="${cdaTemplateId}"></property>
+        <property name="cdaTemplateIdExtension" value="${cdaTemplateIdExtension}"></property>
+        <property name="titleCode" value="${cdaTitleCode}"></property>
+        <property name="titleCodeSystem" value="${cdaTitleCodeSystem}"></property>
+        <property name="titleCodeSystemName" value="${cdaTitleCodeSystemName}"></property>
+        <property name="titleCodeDisplayName" value="${cdaTitleCodeDisplayName}"></property>
+        <property name="confidentialityCode" value="${cdaConfidentialityCode}"></property>
+        <property name="confidentialityCodeSystem" value="${cdaConfidentialityCodeSystem}"></property>
+        <property name="confidentialityCodeDisplayName" value="${cdaConfidentialityCodeDisplayName}"></property>
+        <property name="genderCodeSystem" value="${cdaGenderCodeSystem}"></property>
+        <property name="cdaAuthorTemplateId" value="${cdaAuthorTemplateId}"></property>
+        <property name="cdaAssignedAuthorTemplateId" value="${cdaAssignedAuthorTemplateId}"></property>
+        <property name="principalResultInterpreterFacilityId" value="${cdaPrincipalResultInterpreterFacilityId}"></property>
+        <property name="principalResultInterpreterFacilityDomainId" value="${cdaPrincipalResultInterpreterFacilityDomainId}"></property>
+        <property name="cdaParticipantDomainId" value="${cdaParticipantDomainId}"></property>
+        <property name="accessionDomainId" value="${cdaAccessionDomainId}"></property>
+        <property name="referralDomainId" value="${cdaReferralDomainId}"></property>
+        <property name="cdaPerfomerTypeCode" value="${cdaPerfomerTypeCode}"></property>
+        <property name="cdaPerformerCodeSystem" value="${cdaPerformerCodeSystem}"></property>
+        <property name="cdaPerformerTemplateId" value="${cdaPerformerTemplateId}"></property>
+        <property name="cdaTypeId" value="${cdaTypeId}"></property>
+        <property name="cdaTypeIdExtension" value="${cdaTypeIdExtension}"></property>
+        <property name="cdaIdRoot" value="${cdaIdRoot}"></property>
+        <property name="cdaIdExtension" value="${cdaIdExtension}"></property>
+        <property name="cdaReportTitlePreliminary" value="${cdaReportTitlePreliminary}"></property>
+        <property name="cdaReportTitleFinal" value="${cdaReportTitleFinal}"></property>
+        <property name="cdaReportTitleAddendum" value="${cdaReportTitleAddendum}"></property>
+        <property name="cdaAuthorDomainId" value="${cdaAuthorDomainId}"></property>
+        <property name="cdaAuthorId" value="${cdaAuthorId}"></property>
+        <property name="cdaAssignedAuthorRepresentationOrganizationIdRoot" value="${cdaAssignedAuthorRepresentationOrganizationIdRoot}"></property>
+        <property name="cdaAssignedAuthorRepresentationOrganizationIdExtension" value="${cdaAssignedAuthorRepresentationOrganizationIdExtension}"></property>
+        <property name="cdaAuthorOrganizationName" value="${cdaAuthorOrganizationName}"></property>
+        <property name="cdaWholeOrganization" value="${cdaWholeOrganization}"></property>
+        <property name="cdaParticipantTemplateId" value="${cdaParticipantTemplateId}"></property>
+        <property name="cdaScopingOrganizationIdRoot" value="${cdaScopingOrganizationIdRoot}"></property>
+        <property name="cdaScopingOrganizationIdExtension" value="${cdaScopingOrganizationIdExtension}"></property>
+        <property name="cdaOrderFacilityName" value="${cdaOrderFacilityName}"></property>
+        <property name="cdaPerformerAuthorIdExtension" value="${cdaPerformerAuthorIdExtension}"></property>
+        <property name="cdaPerformerAuthorIdRoot" value="${cdaPerformerAuthorIdRoot}"></property>
+        <property name="cdaComponentTemplateId" value="${cdaComponentTemplateId}"></property>
+        <property name="cdaComponentCode" value="${cdaComponentCode}"></property>
+        <property name="cdaComponentCodeSystem" value="${cdaComponentCodeSystem}"></property>
+        <property name="cdaComponentCodeSystemName" value="${cdaComponentCodeSystemName}"></property>
+        <property name="cdaComponentCodeDisplayName" value="${cdaComponentCodeDisplayName}"></property>
+    </bean>
+
+    <bean id="propertyBuilder" class="com.ge.hc.oru.orutoxds.PropertyBuilder">
+        <property name="title" value="${title}"></property>
+        <property name="sourceId" value="${xdsSubmissionSet.sourceID}"></property>
+        <property name="languageCode" value="${languageCode}"></property>
+        <property name="documentTitle" value="${documentTitle}"></property>
+        <property name="classCodeCodingScheme" value="${classCodeCodingScheme}"></property>
+        <property name="classCodeDisplayName" value="${classCodeDisplayName}"></property>
+        <property name="classCodeNodeRepresentation" value="${classCodeNodeRepresentation}"></property>
+        <property name="confidentialityCodeCodingScheme" value="${confidentialityCodeCodingScheme}"></property>
+        <property name="confidentialityCodeDisplayName" value="${confidentialityCodeDisplayName}"></property>
+        <property name="confidentialityCodeNodeRepresentation" value="${confidentialityCodeNodeRepresentation}"></property>
+        <property name="formatCodeCodingScheme" value="${formatCodeCodingScheme}"></property>
+        <property name="formatCodeDisplayName" value="${formatCodeDisplayName}"></property>
+        <property name="formatCodeNodeRepresentation" value="${formatCodeNodeRepresentation}"></property>
+        <property name="healthcareFacilityCodeCodingScheme" value="${healthcareFacilityCodeCodingScheme}"></property>
+        <property name="healthcareFacilityCodeDisplayName" value="${healthcareFacilityCodeDisplayName}"></property>
+        <property name="healthcareFacilityCodeNodeRepresentation" value="${healthcareFacilityCodeNodeRepresentation}"></property>
+        <property name="practiceCodeCodingScheme" value="${practiceCodeCodingScheme}"></property>
+        <property name="practiceCodeDisplayName" value="${practiceCodeDisplayName}"></property>
+        <property name="practiceCodeNodeRepresentation" value="${practiceCodeNodeRepresentation}"></property>
+        <property name="typeCodeCodingScheme" value="${typeCodeCodingScheme}"></property>
+        <property name="typeCodeDisplayName" value="${typeCodeDisplayName}"></property>
+        <property name="typeCodeNodeRepresentation" value="${typeCodeNodeRepresentation}"></property>
+        <property name="submissionsSourceId" value="${submissionsSourceId}"></property>
+        <property name="contentCodeCodingScheme" value="${contentCodeCodingScheme}"></property>
+        <property name="contentCodeDisplayName" value="${contentDisplayName}"></property>
+        <property name="contentCodeNodeRepresentation" value="${contentNodeRepresentation}"></property>
+        <property name="authorRole" value="${authorRole}"></property>
+        <property name="authorSpecialty" value="${authorSpecialty}"></property>
+        <property name="authorInstitution" value="${authorInstitution}"></property>
+        <property name="preliminaryClassCodeCodingScheme" value="${preliminaryClassCodeCodingScheme}"></property>
+        <property name="preliminaryClassCodeDisplayName" value="${preliminaryClassCodeDisplayName}"></property>
+        <property name="preliminaryClassCodeNodeRepresentation" value="${preliminaryClassCodeNodeRepresentation}"></property>
+        <property name="preliminaryFormatCodeCodingScheme" value="${preliminaryFormatCodeCodingScheme}"></property>
+        <property name="preliminaryFormatCodeDisplayName" value="${preliminaryFormatCodeDisplayName}"></property>
+        <property name="preliminaryFormatCodeNodeRepresentation" value="${preliminaryFormatCodeNodeRepresentation}"></property>
+    </bean>
+
+
+    <bean id="hapiModelExtension" class="org.openehealth.ipf.modules.hl7.extend.HapiModelExtension">
+        <!--property name="mappingService" ref="mappingService"/-->
+    </bean>
+
+    <bean id="coreModelExtension"
+          class="org.openehealth.ipf.platform.camel.core.extend.CoreModelExtension">
+    </bean>
+
+
+    <bean id="hl7ModelExtension"
+          class="org.openehealth.ipf.platform.camel.hl7.extend.Hl7ModelExtension"/>
+
+
+
+    <bean id="hl7codec" class="org.apache.camel.component.hl7.HL7MLLPCodec">
+        <property name="charset" value="iso-8859-1"/>
+    </bean>
+
+
+
+</beans>

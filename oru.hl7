@@ -1,0 +1,71 @@
+MSH|^~\&|RSD.GE.RIS|GE.RIS|RSD.XDS|XDS|20130913121534|Schou|ORU^R01|132330761|P|2.4|||AL
+EVN|R01|20090224104145
+PID|||0104400002^^^CPR&1.2.208.182.1.7.1&ISO||Hansen^Hanne TestR22||19400401|F|||Sndermark 5^^Aarup^^5560^^^420|||||1
+PV1||E|4202799SVAMBI^^^SVBVAMBI1||11977786|6348707||4202799SVAMBI^SVB V Anstesi-Int. Amb.|||^^^5790000183609||||||||J
+ORC|RE|COS579000200103115570617||||||||||4212810^Radiologisk Afdeling OUH Svendborg^Svendborg^5700|||||5790000183609^Radiologisk Afdeling OUH Svendborg^Svendborg^5700|SVBRUM01B
+OBR||COS579000200103115570617^COS1|RSD12000|UXRC00^Rntgenundersgelse af hjerte og lunger|||20130904193939|20130904200416|||f|||20130904195300||^^^^^^^SOR&1.2.208.176.1&ISO||||||20130904200416|||f||20130904195300|||||12345&Docker&Magnus&&&Dr.&&SOR&1.2.208.176.1&ISO^^^orgtest||||20130904193939
+OBX|1|TX|rBefText||some text||||||F
+OBX|2|TX|rBefText||1304532579, Larsen, Benno||||||F
+OBX|3|TX|rBefText|| ||||||F
+OBX|4|TX|rBefText||Endelig beskrivelse||||||F
+OBX|5|TX|rBefText|| ||||||F
+OBX|6|TX|rBefText||Svarmodtager:  SVB V Anstesi-Int. Amb.||||||F
+OBX|7|TX|rBefText|| ||||||F
+OBX|8|TX|rBefText||Dikterende lge:  Radiolog Magnus Docker||||||F
+OBX|9|TX|rBefText|| ||||||F
+OBX|10|TX|rBefText||Signerende lge:  Radiolog Magnus Docker||||||F
+OBX|11|TX|rBefText|| ||||||F
+OBX|12|TX|rBefText|| ||||||F
+OBX|13|TX|rBefText||04-09-2013 RU thorax:||||||F
+OBX|14|TX|rBefText|| ||||||F
+OBX|15|TX|rBefText||Rntgenundersgelse i et frontalprojektion i liggende. CVK fra n. jugularis dx med spids motsvarende hjre formak. ||||||F
+OBX|16|TX|rBefText|| ||||||F
+OBX|17|TX|rBefText|| ||||||F
+OBX|18|TX|rBefText|| ||||||F
+OBX|19|TX|rBefText|| ||||||F
+OBX|20|TX|rBefText|| ||||||F
+
+
+MSH|^~\&|GERIS|Radiology|RSD_XDS|RSD_XDS|20140730114902|Gunnar|ORU^R01|43151462|P|2.4|||AL|||8859/1
+PID|||RILA^^^CPR&1.2.208.182.1.1.2.1&ISO||Prøveklud^Mads Marius Martinusssen^||19131211|M|||Skolegade 23a^^Århus C^^8000|||||||||||||||
+PV1||E|4202706RØAMB^^^SVBRØAMB||7975711|24110589||4202706RØAMB^SVB Radiologisk Afdeling|||^^^4202040|||||||||||||||||||||||||||||||||||||||
+ORC|RE|13884|DKRSD24110589||||^^^20140730092900|||||242681000016000^OUH Radiologisk Ambulatorium (Svendborg)||||| RSDHealthcareFacilityTypeCode^SHS^Sygehus Sønderjylland^|13
+OBR||13884|DKRSD24110589|UXCA00^CT-skanning af cerebrum||20140730092900|20140730093300|20140730093300|||s||Test kliniske informationer|20140730093300||^^^^^^^CPR&1.2.208.182.1.1.2.1&ISO|||SRT;T-D1100;Hoved||20140730114724|20140730114724|||P|||||||55902&Gunnar&Poul-Erik&Systemspecialist RIS/PACS&&&&SOR&1.2.208.182.1.1.2.1&ISO||
+OBX|1|TX|rBefText||30-07-2014 CT cerebrum:||||||P||||
+OBX|2|TX|rBefText|| ||||||P||||
+OBX|3|TX|rBefText|| ||||||P||||
+OBX|4|TX|rBefText||Preliminary report 11:47||||||P||||
+OBX|5|TX|rBefText|| ||||||P||||
+OBX|6|TX|rBefText|| ||||||P||||
+OBX|7|TX|rBefText|| ||||||P||||
+OBX|8|TX|rBefText|| ||||||P||||
+OBX|9|TX|rBefText|| ||||||P||||
+
+EMRAD Pid
+
+MSH|^~\&|RSD.GE.RIS|GE.RIS|RSD.XDS|XDS|20130913121534|Schou|ORU^R01|132330761|P|2.4|||AL
+EVN|R01|20090224104145
+PID|||RX1K3502043^^^RX1&2.16.840.1.113883.3.6332.9.5.1.1&ISO~22283^^^CRIS^PI~123 456 7890^^^NHS||CRIS^BILLY^BOY^^MR||19710201|F|||16 QUARRY ROAD^RAVENSHEAD^NOTTINGHAM^^NG15 9AN|||||||||||A|||||||""|N
+PV1||E|4202799SVAMBI^^^SVBVAMBI1||11977786|6348707||4202799SVAMBI^SVB V Anstesi-Int. Amb.|||^^^5790000183609||||||||J
+ORC|RE|COS579000200103115570617||||||||||4212810^Radiologisk Afdeling OUH Svendborg^Svendborg^5700|||||5790000183609^Radiologisk Afdeling OUH Svendborg^Svendborg^5700|SVBRUM01B
+OBR||COS579000200103115570617^COS1|RSD12000|UXRC00^Rntgenundersgelse af hjerte og lunger|||20130904193939|20130904200416|||f|||20130904195300||^^^^^^^SOR&1.2.208.176.1&ISO||||||20130904200416|||f||20130904195300|||||12345&Docker&Magnus&&&Dr.&&SOR&1.2.208.176.1&ISO^^^orgtest|12345&Docker&Magnus&&&Dr.&&SOR&1.2.208.176.1&ISO^^^orgtest|||20130904193939
+OBX|1|TX|rBefText||some text||||||F
+OBX|2|TX|rBefText||1304532579, Larsen, Benno||||||F
+OBX|3|TX|rBefText|| ||||||F
+OBX|4|TX|rBefText||Endelig beskrivelse||||||F
+OBX|5|TX|rBefText|| ||||||F
+OBX|6|TX|rBefText||Svarmodtager:  SVB V Anstesi-Int. Amb.||||||F
+OBX|7|TX|rBefText|| ||||||F
+OBX|8|TX|rBefText||Dikterende lge:  Radiolog Magnus Docker||||||F
+OBX|9|TX|rBefText|| ||||||F
+OBX|10|TX|rBefText||Signerende lge:  Radiolog Magnus Docker||||||F
+OBX|11|TX|rBefText|| ||||||F
+OBX|12|TX|rBefText|| ||||||F
+OBX|13|TX|rBefText||04-09-2013 RU thorax:||||||F
+OBX|14|TX|rBefText|| ||||||F
+OBX|15|TX|rBefText||Rntgenundersgelse i et frontalprojektion i liggende. CVK fra n. jugularis dx med spids motsvarende hjre formak. ||||||F
+OBX|16|TX|rBefText|| ||||||F
+OBX|17|TX|rBefText|| ||||||F
+OBX|18|TX|rBefText|| ||||||F
+OBX|19|TX|rBefText|| ||||||F
+OBX|20|TX|rBefText|| ||||||F
